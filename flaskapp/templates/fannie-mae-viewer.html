@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fannie Mae Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <!-- ----------------->
+    <!-- HEADER SECTION -->
+    <!-- ----------------->
+    <div class="header">
+        <div class="container">
+            <div class="heading">            
+                <div class="logo">
+                    <h1 title="Fannie Mae Viewer" ><a href="#home">Fannie Mae Viewer</a></h1>
+                </div>
+                <div class="menu">
+                    <ul>                        
+                        <li><a href="/fannie-mae-viewer/riskanalyzer" title="Analyze">Analyze</a></li>
+                        <li><a href="/fannie-mae-viewer/exploration" title="Explore">Explore</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------->
+    <!--END HEADER SECTION-->
+    <!-- ------------------->
+
+    <!-- ----------------->
+    <!-- BANNER SECTION -->
+    <!-- ----------------->
+
+    <div class="banner">
+        <div class="container">
+            <div class="content">
+                <div class="content-left" id="home">
+                    <h2>
+                        Overview and Purpose
+                    </h2>
+                    <p>
+                        The Fannie Mae Performance Viewer (RMP Viewer) is a web-based tool that provides residential mortgage performance data for investors and mortgage-backed securities. The data is provided by the Fannie Mae and includes information on delinquency, foreclosure, and loan modifications.
+                    </p>
+                    
+                    <p>
+                    	The RMP Viewer can be used to track the performance of mortgage loans over time and to compare the performance of loans with different charactertistics. It can also be used to identify areas of risk for the RMBS market.
+                    </p>
+                    
+                    <p>
+                    The FM Viewer is a valuable tool for investors, regulators, and other stakeholders who want to understand the performance of the RMBS market. It provides a comprehensive and up-to-date source of data on RMBS performance, and it can be used to make informed decisions about RMBS investments.
+                    </p>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="content">
+                <div class="content-left" id="home">
+                    <h2>
+                        Dataset description and Citation
+                    </h2>
+                    <p>
+                    	Performance data covering the last 10 years of performance data of conventional 30 year mortgage loans guaranteed by Fannie Mae (~33% of US mortgage market).
+                    </p>
+                    <p>
+                    	Fannie Mae provides this data through their Data Dynamics tool, which is freely available to the public.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ------------------->
+    <!--END BANNER SECTION-->
+    <!-- ------------------->
+
+    <!-- ----------------->
+    <!-- FOOTER SECTION -->
+    <!-- ----------------->
+
+    <div class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p>Josh Fram • Andre Gigena • Marshal Ma • Sudhir Suvva</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

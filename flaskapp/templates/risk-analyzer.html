@@ -1,108 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Risk Analyzer For Mortgage Delinquency</title>
-<meta content="Store - Webflow HTML website template" property="og:title"/>
-<style>
-body {
-  font-family: sans-serif;
-  background-color:#ddd;
-}
-
-h1 {
-  position: relative;
-  padding: 0;
-  margin: 0;
-  font-family: "Raleway", sans-serif;
-  font-weight: 300;
-  font-size: 40px;
-  color: #080808;
-  -webkit-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
-}
-
-.two h1 {
-  text-transform: capitalize;
-}
-.two h1:before {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 60px;
-  height: 2px;
-  content: "";
-  background-color: #c50000;
-}
-
-.two h1 span {
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  line-height: 3em;
-  padding-left: 0.25em;
-  color: rgba(0, 0, 0, 0.4);
-  padding-bottom: 10px;
-}
-
-.input-container {
-  width: 600px;
-  margin: 0 auto;
-}
-
-.input-question {
-  margin-bottom: 10px;
-}
-
-.input-field {
-  width: 50%;
-  padding: 10px;
-  border: 1px solid black;
-}
-
-.submit-button {
-  background-color: #008CBA;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-}
-</style>
+    <title>Fannie Mae Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">  
 </head>
 <body>
-<div class="input-container">
-  <div class="two">	
-  <h1>Risk Analyzer For Mortgage Delinquency</h1>
-  </div>
-  <br><br><br><br>
-  <form action="/" method="post">
-    <div class="input-question">
-      <label for="question-1">What is the interest rate for this loan? Enter the percentage (e.g. 2% : 2.0)</label>
-      <input type="text" class="input-field" name="question-1" id="question-1">
+
+    <!-- ----------------->
+    <!-- HEADER SECTION -->
+    <!-- ----------------->
+    <div class="header">
+        <div class="container">
+            <div class="heading">            
+                <div class="logo">
+                    <h1 title="Fannie Mae Viewer" ><a href="/fannie-mae-viewer/">Fannie Mae Viewer</a></h1>
+                </div>
+                <div class="menu">
+                    <ul>                        
+                        <li><a href="#" title="Analyze">Analyze</a></li>
+                        <li><a href="/fannie-mae-viewer/exploration" title="Explore">Explore</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="input-question">
-      <label for="question-2">What is the total loan amount in dollars?</label>
-      <input type="text" class="input-field" name="question-2" id="question-2">
+    <!-- ------------------->
+    <!--END HEADER SECTION-->
+    <!-- ------------------->
+
+    <!-- ----------------->
+    <!-- BANNER SECTION -->
+    <!-- ----------------->
+    
+
+    <div class="banner row">
+        <div class="container">
+            <div class="content">
+                <div class="input-container">
+                    <div class="two">	
+                    <h1>Risk Analyzer For Mortgage Delinquency</h1>
+                    </div>
+                    
+                    <form action="/" method="post">
+                      <div class="input-question">
+                        <label for="question-1">What is the interest rate for this loan? Enter the percentage (e.g. 2% : 2.0)</label>
+                        <input type="text" class="input-field" name="question-1" id="question-1">
+                      </div>
+                      <div class="input-question">
+                        <label for="question-2">What is the total loan amount in dollars?</label>
+                        <input type="text" class="input-field" name="question-2" id="question-2">
+                      </div>
+                      <div class="input-question">
+                        <label for="question-3">What is the Loan-to-Value ratio? Enter percentage number (e.g. 45% -> 45)</label>
+                        <input type="text" class="input-field" name="question-3" id="question-3">
+                      </div>
+                      <div class="input-question">
+                        <label for="question-4">What is the FICO score for the main borrower?</label>
+                        <input type="text" class="input-field" name="question-4" id="question-4">
+                      </div>
+                      <div class="input-question">
+                        <label for="question-5">What is the Debt-To-Income ratio? Enter percentage (e.g. 20% -> 20)</label>
+                        <input type="text" class="input-field" name="question-5" id="question-5">
+                      </div>
+                      <div class="input-question">
+                        <label for="question-6">What is the zipcode of the property?</label>
+                        <input type="text" class="input-field" name="question-5" id="question-5">
+                      </div>
+                      <div class="btn">
+                        <input type="submit" value="Get Risk">
+                      </div>
+                      
+                    </form>
+                  </div>
+            </div>
+        </div>
     </div>
-    <div class="input-question">
-      <label for="question-3">What is the Loan-to-Value ratio? Enter percentage number (e.g. 45% -> 45)</label>
-      <input type="text" class="input-field" name="question-3" id="question-3">
+
+
+    <!-- ------------------->
+    <!--END BANNER SECTION-->
+    <!-- ------------------->
+
+    <!-- ----------------->
+    <!-- FOOTER SECTION -->
+    <!-- ----------------->
+
+    <div class="footer row">
+        <div class="container">
+            <div class="footer-inner">
+                <p>Josh Fram • Andre Gigena • Marshal Ma • Sudhir Suvva</p>
+            </div>
+        </div>
     </div>
-    <div class="input-question">
-      <label for="question-4">What is the FICO score for the main borrower?</label>
-      <input type="text" class="input-field" name="question-4" id="question-4">
-    </div>
-    <div class="input-question">
-      <label for="question-5">What is the Debt-To-Income ratio? Enter percentage (e.g. 20% -> 20)</label>
-      <input type="text" class="input-field" name="question-5" id="question-5">
-    </div>
-    <div class="input-question">
-      <label for="question-6">What is the short Zipcode where the property is located at?</label>
-      <input type="text" class="input-field" name="question-5" id="question-5">
-    </div>
-    <button class="submit-button">Get Risk</button>
-  </form>
-</div>
+
+
 </body>
 </html>

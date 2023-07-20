@@ -22,7 +22,7 @@
                 </div>
                 <div class="menu">
                     <ul>                        
-                        <li><a href="#" title="Analyze">Analyze</a></li>
+                        <li><a href="/fannie-mae-viewer/riskanalyzer" title="Analyze">Analyze</a></li>
                         <li><a href="/fannie-mae-viewer/exploration" title="Explore">Explore</a></li>
                     </ul>
                 </div>
@@ -46,7 +46,7 @@
                     <h1>Risk Analyzer For Mortgage Delinquency</h1>
                     </div>
                     
-                    <form action="/fannie-mae-viewer/getrisk" method="post">
+
                       <div class="input-question">
                         <label for="question-1">What is the interest rate for this loan? Enter the percentage (e.g. 2% : 2.0)</label>
                         <input type="text" class="input-field" name="question-1" id="question-1">
@@ -71,11 +71,17 @@
                         <label for="question-6">What is the zipcode of the property?</label>
                         <input type="text" class="input-field" name="question-5" id="question-5">
                       </div>
-                      <div class="btn">
-                        <input type="submit" value="Get Risk">
-                      </div>
                       
-                    </form>
+                      <br><br><br>
+                      
+                      <div class="two">	
+                		<h1>Generated results for the above input loan parameters</h1>
+                      </div>
+                      <div>
+                        <img max-width="100" src="{{url_for('static', filename='risk-results-img.png')}}">
+                  	  </div>
+                      
+
                   </div>
             </div>
         </div>

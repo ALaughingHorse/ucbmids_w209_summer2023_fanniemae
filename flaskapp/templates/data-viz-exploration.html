@@ -49,17 +49,71 @@
         </div>
     </div>
 
-    <!-- Begin test -->
-    <div id="vis"></div>
+    <!-- LTV -->
+    <p>Delinquency By Loan-to-Value Bins</p>
+    <div class="altair" id="ltv"></div>
 
     <script type="text/javascript">
-      //var spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
-      var spec = "/fannie-mae-viewer/static/delinquency_timeline.json";
-      vegaEmbed('#vis', spec).then(function(result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    });//.catch(console.error);
+      var spec = "/fannie-mae-viewer/static/vega_ltv.json";
+      vegaEmbed('#ltv', spec).then(function(result) {
+    }).catch(console.error);
     </script>
-    <!-- End test -->
+    <!-- End LTV -->
+
+    <!-- FICO -->
+    <p>Delinquency By FICO Bins</p>
+    <div class="altair" id="fico"></div>
+
+    <script type="text/javascript">
+      var spec = "/fannie-mae-viewer/static/vega_fico.json";
+      vegaEmbed('#fico', spec).then(function(result) {
+    }).catch(console.error);
+    </script>
+    <!-- End FICO -->
+
+    <!-- DTI -->
+    <p>Delinquency By Debt-to-Income Ratio Bins</p>
+    <div class="altair" id="dti"></div>
+
+    <script type="text/javascript">
+      var spec = "/fannie-mae-viewer/static/vega_dti.json";
+      vegaEmbed('#dti', spec).then(function(result) {
+    }).catch(console.error);
+    </script>
+    <!-- End LTV -->
+
+    <!-- Heatmap -->
+    <p>More Borrowers Decreases the Risk of Delinquency</p>
+    <div class="altair" id="heatmap"></div>
+
+    <script type="text/javascript">
+      var spec = "/fannie-mae-viewer/static/delinquency_num_borrowers.json";
+      vegaEmbed('#heatmap', spec).then(function(result) {
+    }).catch(console.error);
+    </script>
+    <!-- End heatmap -->
+
+    <!-- Pie Chart -->
+    <p>Patterns of Increasing/Decreasing Delinquency</p>
+    <div class="altair" id="pie"></div>
+
+    <script type="text/javascript">
+      var spec = "/fannie-mae-viewer/static/delinquency_timeline.json";
+      vegaEmbed('#pie', spec).then(function(result) {
+    }).catch(console.error);
+    </script>
+    <!-- End pie chart -->
+
+    <!-- Refinance Chart -->
+    <p>Refinance Opportunities Enticing for as Low as 0.2% Interest Rate Improvement</p>
+    <div class="altair" id="refi"></div>
+
+    <script type="text/javascript">
+      var spec = "/fannie-mae-viewer/static/refinance.json";
+      vegaEmbed('#refi', spec).then(function(result) {
+    }).catch(console.error);
+    </script>
+    <!-- End refinance chart -->
 
     <div class="footer">
         <div class="container">

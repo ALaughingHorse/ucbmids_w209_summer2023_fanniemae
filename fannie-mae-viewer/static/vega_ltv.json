@@ -1,0 +1,149 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "background": "white",
+    "padding": 5,
+    "width": 300,
+    "height": 300,
+    "style": "cell",
+    "data": [
+      {
+        "name": "data-6a83e5b7de48071a67a8e50f2240629c",
+        "values": [
+          {"LTV Bin": 0, "EVER_DQ": false, "Bal Pct": 0.016700355776422426},
+          {"LTV Bin": 0, "EVER_DQ": true, "Bal Pct": 0.0016846195368226432},
+          {"LTV Bin": 1, "EVER_DQ": false, "Bal Pct": 0.038530262387900374},
+          {"LTV Bin": 1, "EVER_DQ": true, "Bal Pct": 0.004827011605353668},
+          {"LTV Bin": 2, "EVER_DQ": false, "Bal Pct": 0.06942706071507268},
+          {"LTV Bin": 2, "EVER_DQ": true, "Bal Pct": 0.010220386097933598},
+          {"LTV Bin": 3, "EVER_DQ": false, "Bal Pct": 0.02917021504728615},
+          {"LTV Bin": 3, "EVER_DQ": true, "Bal Pct": 0.003740121131182401},
+          {"LTV Bin": 4, "EVER_DQ": false, "Bal Pct": 0.04410261437728365},
+          {"LTV Bin": 4, "EVER_DQ": true, "Bal Pct": 0.005619466872134802},
+          {"LTV Bin": 5, "EVER_DQ": false, "Bal Pct": 0.18365460040083084},
+          {"LTV Bin": 5, "EVER_DQ": true, "Bal Pct": 0.027684915087563468},
+          {"LTV Bin": 6, "EVER_DQ": false, "Bal Pct": 0.026978421514939028},
+          {"LTV Bin": 6, "EVER_DQ": true, "Bal Pct": 0.003608389756358311},
+          {"LTV Bin": 7, "EVER_DQ": false, "Bal Pct": 0.01877098269177693},
+          {"LTV Bin": 7, "EVER_DQ": true, "Bal Pct": 0.002810914589116882},
+          {"LTV Bin": 8, "EVER_DQ": false, "Bal Pct": 0.34649249383799013},
+          {"LTV Bin": 8, "EVER_DQ": true, "Bal Pct": 0.059443397374139284},
+          {"LTV Bin": 9, "EVER_DQ": false, "Bal Pct": 0.08901658247014012},
+          {"LTV Bin": 9, "EVER_DQ": true, "Bal Pct": 0.017517188729752577}
+        ]
+      },
+      {
+        "name": "data_0",
+        "source": "data-6a83e5b7de48071a67a8e50f2240629c",
+        "transform": [
+          {
+            "type": "stack",
+            "groupby": ["LTV Bin"],
+            "field": "Bal Pct",
+            "sort": {"field": ["EVER_DQ"], "order": ["descending"]},
+            "as": ["Bal Pct_start", "Bal Pct_end"],
+            "offset": "zero"
+          },
+          {
+            "type": "filter",
+            "expr": "isValid(datum[\"LTV Bin\"]) && isFinite(+datum[\"LTV Bin\"]) && isValid(datum[\"Bal Pct\"]) && isFinite(+datum[\"Bal Pct\"])"
+          }
+        ]
+      }
+    ],
+    "marks": [
+      {
+        "name": "marks",
+        "type": "rect",
+        "style": ["bar"],
+        "from": {"data": "data_0"},
+        "encode": {
+          "update": {
+            "fill": {"scale": "color", "field": "EVER_DQ"},
+            "ariaRoleDescription": {"value": "bar"},
+            "description": {
+              "signal": "\"LTV Bin: \" + (format(datum[\"LTV Bin\"], \"\")) + \"; Bal Pct: \" + (format(datum[\"Bal Pct\"], \"\")) + \"; EVER_DQ: \" + (isValid(datum[\"EVER_DQ\"]) ? datum[\"EVER_DQ\"] : \"\"+datum[\"EVER_DQ\"])"
+            },
+            "xc": {"scale": "x", "field": "LTV Bin"},
+            "width": {"value": 5},
+            "y": {"scale": "y", "field": "Bal Pct_end"},
+            "y2": {"scale": "y", "field": "Bal Pct_start"}
+          }
+        }
+      }
+    ],
+    "scales": [
+      {
+        "name": "x",
+        "type": "linear",
+        "domain": {"data": "data_0", "field": "LTV Bin"},
+        "range": [0, {"signal": "width"}],
+        "nice": true,
+        "zero": false,
+        "padding": 5
+      },
+      {
+        "name": "y",
+        "type": "linear",
+        "domain": {"data": "data_0", "fields": ["Bal Pct_start", "Bal Pct_end"]},
+        "range": [{"signal": "height"}, 0],
+        "nice": true,
+        "zero": true
+      },
+      {
+        "name": "color",
+        "type": "ordinal",
+        "domain": {"data": "data_0", "field": "EVER_DQ", "sort": true},
+        "range": "category"
+      }
+    ],
+    "axes": [
+      {
+        "scale": "x",
+        "orient": "bottom",
+        "gridScale": "y",
+        "grid": true,
+        "tickCount": {"signal": "ceil(width/40)"},
+        "domain": false,
+        "labels": false,
+        "aria": false,
+        "maxExtent": 0,
+        "minExtent": 0,
+        "ticks": false,
+        "zindex": 0
+      },
+      {
+        "scale": "y",
+        "orient": "left",
+        "gridScale": "x",
+        "grid": true,
+        "tickCount": {"signal": "ceil(height/40)"},
+        "domain": false,
+        "labels": false,
+        "aria": false,
+        "maxExtent": 0,
+        "minExtent": 0,
+        "ticks": false,
+        "zindex": 0
+      },
+      {
+        "scale": "x",
+        "orient": "bottom",
+        "grid": false,
+        "title": "LTV Bin",
+        "labelFlush": true,
+        "labelOverlap": true,
+        "tickCount": {"signal": "ceil(width/40)"},
+        "zindex": 0
+      },
+      {
+        "scale": "y",
+        "orient": "left",
+        "grid": false,
+        "title": "Bal Pct",
+        "labelOverlap": true,
+        "tickCount": {"signal": "ceil(height/40)"},
+        "zindex": 0
+      }
+    ],
+    "legends": [{"fill": "color", "symbolType": "square", "title": "EVER_DQ"}]
+  }

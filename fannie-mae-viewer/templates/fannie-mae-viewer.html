@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fannie Mae Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <!-- ----------------->
+    <!-- HEADER SECTION -->
+    <!-- ----------------->
+    <div class="header">
+        <div class="container">
+            <div class="heading">            
+                <div class="logo">
+                    <h1 title="Fannie Mae Viewer" ><a href="#home">Fannie Mae Viewer</a></h1>
+                </div>
+                <div class="menu">
+                    <ul>                        
+                        <li><a href="/fannie-mae-viewer/riskanalyzer" title="Analyze">Analyze</a></li>
+                        <li><a href="/fannie-mae-viewer/exploration" title="Explore">Explore</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------->
+    <!--END HEADER SECTION-->
+    <!-- ------------------->
+
+    <!-- ----------------->
+    <!-- BANNER SECTION -->
+    <!-- ----------------->
+
+    <div class="banner">
+        <div class="container">
+            <div class="content">
+                <div class="content-left" id="home">
+                    <h2>
+                        Overview
+                    </h2>
+                    <p>
+                        The Fannie Mae Viewer is a web-based tool that provides insights into
+			residential mortgage performance for investors and anyone interested. It has
+			been prepared as part of a UC Berkeley DATASCI 209 Information Visualization class.
+                    </p>
+                    <p>
+			On the "Analyze" page, users will find an interactive tool to help gauge the risk
+			of a loan application based on historical residential mortgage data.
+                    </p>
+                    <p>
+			The "Explore" page has a variety of visualizations which highlight some trends identified
+			in the dataset.
+                    </p>
+                    
+                </div>
+
+                
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="content">
+                <div class="content-left" id="home">
+                    <h2>
+                        The Data
+                    </h2>
+                    <p>
+                    	The data used in the various visualizations is mortgage performance data
+			covering the last 10 years of conventional, 30-year mortgage loans guaranteed
+			by Fannie Mae (~33% of US mortgage market). Specifically, this project focuses on
+			the reference pool 1474. Fannie Mae provides this data through their
+			<a href="https://www.fanniemae.com/data-dynamics"><u>Data Dynamics tool</u></a>,
+		    	which is freely available to the public.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ------------------->
+    <!--END BANNER SECTION-->
+    <!-- ------------------->
+
+    <!-- ----------------->
+    <!-- FOOTER SECTION -->
+    <!-- ----------------->
+
+    <div class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p>Josh Fram • Andre Gigena • Marshal Ma • Sudhir Suvva</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

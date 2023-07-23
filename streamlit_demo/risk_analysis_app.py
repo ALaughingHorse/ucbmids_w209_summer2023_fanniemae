@@ -81,7 +81,7 @@ if st.button('Analyze'):
         ).get_relative_stats(ref_table=df).generate_risk_summary(weight_params=weights)
     
     st.write(
-        f"According to the calculation, the risk level of this loan going delinquent is: {dlqr.risk_cat}, with a risk score of {dlqr.risk_score}"
+        f"According to the calculation, the risk level of this loan going delinquent is: {dlqr.risk_cat}"
     )
 
     st.altair_chart(

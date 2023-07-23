@@ -1,0 +1,149 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "background": "white",
+    "padding": 5,
+    "width": 300,
+    "height": 300,
+    "style": "cell",
+    "data": [
+      {
+        "name": "data-9ff35282c514742bd167892425f50bc4",
+        "values": [
+          {"DTI Bin": 0, "EVER_DQ": false, "Bal Pct": 0.00010321965260188987},
+          {"DTI Bin": 0, "EVER_DQ": true, "Bal Pct": 0.000024738594425246333},
+          {"DTI Bin": 1, "EVER_DQ": false, "Bal Pct": 0.0012920173870978452},
+          {"DTI Bin": 1, "EVER_DQ": true, "Bal Pct": 0.00012585841938361398},
+          {"DTI Bin": 2, "EVER_DQ": false, "Bal Pct": 0.010138427200222372},
+          {"DTI Bin": 2, "EVER_DQ": true, "Bal Pct": 0.000944135004218685},
+          {"DTI Bin": 3, "EVER_DQ": false, "Bal Pct": 0.043663258252683544},
+          {"DTI Bin": 3, "EVER_DQ": true, "Bal Pct": 0.003698682345029767},
+          {"DTI Bin": 4, "EVER_DQ": false, "Bal Pct": 0.09644163863724861},
+          {"DTI Bin": 4, "EVER_DQ": true, "Bal Pct": 0.008629208891247695},
+          {"DTI Bin": 5, "EVER_DQ": false, "Bal Pct": 0.11332487627749904},
+          {"DTI Bin": 5, "EVER_DQ": true, "Bal Pct": 0.013347029459138206},
+          {"DTI Bin": 6, "EVER_DQ": false, "Bal Pct": 0.1741191846421756},
+          {"DTI Bin": 6, "EVER_DQ": true, "Bal Pct": 0.023241975082132788},
+          {"DTI Bin": 7, "EVER_DQ": false, "Bal Pct": 0.19604184457784474},
+          {"DTI Bin": 7, "EVER_DQ": true, "Bal Pct": 0.034426641405740116},
+          {"DTI Bin": 8, "EVER_DQ": false, "Bal Pct": 0.21601724247221632},
+          {"DTI Bin": 8, "EVER_DQ": true, "Bal Pct": 0.05029638410992178},
+          {"DTI Bin": 9, "EVER_DQ": false, "Bal Pct": 0.011701880120052396},
+          {"DTI Bin": 9, "EVER_DQ": true, "Bal Pct": 0.002421757469119738}
+        ]
+      },
+      {
+        "name": "data_0",
+        "source": "data-9ff35282c514742bd167892425f50bc4",
+        "transform": [
+          {
+            "type": "stack",
+            "groupby": ["DTI Bin"],
+            "field": "Bal Pct",
+            "sort": {"field": ["EVER_DQ"], "order": ["descending"]},
+            "as": ["Bal Pct_start", "Bal Pct_end"],
+            "offset": "zero"
+          },
+          {
+            "type": "filter",
+            "expr": "isValid(datum[\"DTI Bin\"]) && isFinite(+datum[\"DTI Bin\"]) && isValid(datum[\"Bal Pct\"]) && isFinite(+datum[\"Bal Pct\"])"
+          }
+        ]
+      }
+    ],
+    "marks": [
+      {
+        "name": "marks",
+        "type": "rect",
+        "style": ["bar"],
+        "from": {"data": "data_0"},
+        "encode": {
+          "update": {
+            "fill": {"scale": "color", "field": "EVER_DQ"},
+            "ariaRoleDescription": {"value": "bar"},
+            "description": {
+              "signal": "\"DTI Bin: \" + (format(datum[\"DTI Bin\"], \"\")) + \"; Bal Pct: \" + (format(datum[\"Bal Pct\"], \"\")) + \"; EVER_DQ: \" + (isValid(datum[\"EVER_DQ\"]) ? datum[\"EVER_DQ\"] : \"\"+datum[\"EVER_DQ\"])"
+            },
+            "xc": {"scale": "x", "field": "DTI Bin"},
+            "width": {"value": 5},
+            "y": {"scale": "y", "field": "Bal Pct_end"},
+            "y2": {"scale": "y", "field": "Bal Pct_start"}
+          }
+        }
+      }
+    ],
+    "scales": [
+      {
+        "name": "x",
+        "type": "linear",
+        "domain": {"data": "data_0", "field": "DTI Bin"},
+        "range": [0, {"signal": "width"}],
+        "nice": true,
+        "zero": false,
+        "padding": 5
+      },
+      {
+        "name": "y",
+        "type": "linear",
+        "domain": {"data": "data_0", "fields": ["Bal Pct_start", "Bal Pct_end"]},
+        "range": [{"signal": "height"}, 0],
+        "nice": true,
+        "zero": true
+      },
+      {
+        "name": "color",
+        "type": "ordinal",
+        "domain": {"data": "data_0", "field": "EVER_DQ", "sort": true},
+        "range": "category"
+      }
+    ],
+    "axes": [
+      {
+        "scale": "x",
+        "orient": "bottom",
+        "gridScale": "y",
+        "grid": true,
+        "tickCount": {"signal": "ceil(width/40)"},
+        "domain": false,
+        "labels": false,
+        "aria": false,
+        "maxExtent": 0,
+        "minExtent": 0,
+        "ticks": false,
+        "zindex": 0
+      },
+      {
+        "scale": "y",
+        "orient": "left",
+        "gridScale": "x",
+        "grid": true,
+        "tickCount": {"signal": "ceil(height/40)"},
+        "domain": false,
+        "labels": false,
+        "aria": false,
+        "maxExtent": 0,
+        "minExtent": 0,
+        "ticks": false,
+        "zindex": 0
+      },
+      {
+        "scale": "x",
+        "orient": "bottom",
+        "grid": false,
+        "title": "DTI Bin",
+        "labelFlush": true,
+        "labelOverlap": true,
+        "tickCount": {"signal": "ceil(width/40)"},
+        "zindex": 0
+      },
+      {
+        "scale": "y",
+        "orient": "left",
+        "grid": false,
+        "title": "Bal Pct",
+        "labelOverlap": true,
+        "tickCount": {"signal": "ceil(height/40)"},
+        "zindex": 0
+      }
+    ],
+    "legends": [{"fill": "color", "symbolType": "square", "title": "EVER_DQ"}]
+  }

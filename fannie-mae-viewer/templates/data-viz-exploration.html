@@ -55,7 +55,7 @@
 
     <script type="text/javascript">
       var spec = "/fannie-mae-viewer/static/vega_ltv.json";
-      vegaEmbed('#ltv', spec).then(function(result) {
+      vegaEmbed('#ltv', spec, {"actions": false}).then(function(result) {
     }).catch(console.error);
     </script>
     <!-- End LTV -->
@@ -66,7 +66,7 @@
 
     <script type="text/javascript">
       var spec = "/fannie-mae-viewer/static/vega_fico.json";
-      vegaEmbed('#fico', spec).then(function(result) {
+      vegaEmbed('#fico', spec, {"actions": false}).then(function(result) {
     }).catch(console.error);
     </script>
     <!-- End FICO -->
@@ -77,21 +77,21 @@
 
     <script type="text/javascript">
       var spec = "/fannie-mae-viewer/static/vega_dti.json";
-      vegaEmbed('#dti', spec).then(function(result) {
+      vegaEmbed('#dti', spec, {"actions": false}).then(function(result) {
     }).catch(console.error);
     </script>
     <!-- End LTV -->
 
-    <!-- Heatmap -->
+    <!-- Borrowers Scatter -->
     <p>More Borrowers Decreases the Risk of Delinquency</p>
-    <div class="altair" id="heatmap"></div>
+    <div class="altair" id="borrowers_scatter"></div>
 
     <script type="text/javascript">
       var spec = "/fannie-mae-viewer/static/delinquency_num_borrowers.json";
-      vegaEmbed('#heatmap', spec).then(function(result) {
+      vegaEmbed('#borrowers_scatter', spec, {"actions": false}).then(function(result) {
     }).catch(console.error);
     </script>
-    <!-- End heatmap -->
+    <!-- End scatter -->
 
     <!-- Pie Chart -->
     <p>Patterns of Increasing/Decreasing Delinquency</p>
@@ -99,7 +99,7 @@
 
     <script type="text/javascript">
       var spec = "/fannie-mae-viewer/static/delinquency_timeline.json";
-      vegaEmbed('#pie', spec).then(function(result) {
+      vegaEmbed('#pie', spec, {"actions": false}).then(function(result) {
     }).catch(console.error);
     </script>
     <!-- End pie chart -->
@@ -110,7 +110,7 @@
 
     <script type="text/javascript">
       var spec = "/fannie-mae-viewer/static/refinance.json";
-      vegaEmbed('#refi', spec).then(function(result) {
+      vegaEmbed('#refi', spec, {"actions": false}).then(function(result) {
     }).catch(console.error);
     </script>
     <!-- End refinance chart -->

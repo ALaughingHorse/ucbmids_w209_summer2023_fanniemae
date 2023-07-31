@@ -1,6 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
+from dash import html
+from dashcomponents.risk_analyzer import risk_app
+import dash
 
 app = Flask(__name__)
+app_dash = dash.Dash(__name__, server=app, url_base_pathname='/dash_risk_calc/')
+app_dash.layout = risk_app
+
+@app.route("/test_dash")
+def render_dashboard():
+    return redirect('/dash_risk_calc')
 
 @app.route("/")
 def flaskapp():
@@ -8,11 +17,7 @@ def flaskapp():
 
 @app.route("/riskanalyzer")
 def riskanalyzer():
-    return render_template("risk-analyzer.html")
-
-@app.route("/getrisk", methods=["GET", "POST"])
-def getrisk():
-    return render_template("risk-analyzer-results.html")
+    return redirect('/dash_risk_calc')
 
 @app.route("/exploration")
 def exploration():

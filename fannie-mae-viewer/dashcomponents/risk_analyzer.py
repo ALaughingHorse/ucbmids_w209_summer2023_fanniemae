@@ -4,6 +4,7 @@ from dash import dcc
 from dash.dependencies import Input, Output, State
 import altair as alt
 import pandas as pd
+import dash_bootstrap_components as dbc
 from src.dlq_risk_calculation import LoanDlqRisks
 import pickle
 df = pd.read_csv('dashcomponents/loan_data.csv')
@@ -48,53 +49,59 @@ risk_app = \
                         html.Div(className="two", children=[
                             html.H1("Risk Analyzer For Mortgage Delinquency")
                         ]),
-                        html.Div(children=[
-                            html.Div(className="input-question", children=[
-                                html.Label("Interest Rate (e.g. 2% : 2.0)"),
-                                dcc.Input(type="text", className="input-field", name="question-1", id="interest_rate")
-                            ]),
-                            html.Div(className="input-question", children=[
-                                html.Label("Loan Amount ($)"),
-                                dcc.Input(type="text", className="input-field", name="question-2", id="loan_amount")
-                            ]),
-                            html.Div(className="input-question", children=[
-                                html.Label("Loan-to-Value Ratio (e.g. 45% -> 45)"),
-                                dcc.Input(type="text", className="input-field", name="question-3", id="ltv")
-                            ]),
-                            html.Div(className="input-question", children=[
-                                html.Label("Main borrower FICO score"),
-                                dcc.Input(type="text", className="input-field", name="question-4", id="fico")
-                            ]),
-                            html.Div(className="input-question", children=[
-                                html.Label("Debt-To-Income ratio (e.g. 20% -> 20)"),
-                                dcc.Input(type="text", className="input-field", name="question-5", id="dti")
-                            ]),
-                            html.Div(className="input-question", children=[
-                                html.Label("ZipCode"),
-                                dcc.Input(type="text", className="input-field", name="question-6", id="zipcodeshort")
-                            ]),
-                            
-                            html.Div(className="btn", children=[
-                                html.Button('Get Risk', id='get_risk', n_clicks=0)
-                            ])
+                        html.Div(className="input-question", children=[
+                            html.Label("Interest Rate (e.g. 2% : 2.0)"),
+                            dcc.Input(type="text", className="input-field", name="question-1", id="interest_rate", value=2.0)
+                        ]),
+                        html.Div(className="input-question", children=[
+                            html.Label("Loan Amount ($)"),
+                            dcc.Input(type="text", className="input-field", name="question-2", id="loan_amount", value = 250000)
+                        ]),
+                        html.Div(className="input-question", children=[
+                            html.Label("Loan-to-Value Ratio (e.g. 45% -> 45)"),
+                            dcc.Input(type="text", className="input-field", name="question-3", id="ltv", value=45)
+                        ]),
+                        html.Div(className="input-question", children=[
+                            html.Label("Main borrower FICO score"),
+                            dcc.Input(type="text", className="input-field", name="question-4", id="fico", value=750)
+                        ]),
+                        html.Div(className="input-question", children=[
+                            html.Label("Debt-To-Income ratio (e.g. 20% -> 20)"),
+                            dcc.Input(type="text", className="input-field", name="question-5", id="dti", value=22)
+                        ]),
+                        html.Div(className="input-question", children=[
+                            html.Label("ZipCode"),
+                            dcc.Input(type="text", className="input-field", name="question-6", id="zipcodeshort", value=000)
+                            # dcc.Dropdown(options=list(set(df['Zip Code Short'])),className="input-field", id="zipcodeshort", value=0)
+                        ]),
+                        
+                        html.Div(className="btn", children=[
+                            html.Button('Get Risk', id='get_risk', n_clicks=0)
                         ])
                     ])
+                ]),
+                html.Div([
+                    html.Iframe(
+                        id='risk-chart',
+                        style={'border-width': '0', 'width': '1500px', 'height': '600px'}
+                    )
                 ])
             ])
         ]),
 
-        # Calculation outputs
-        # dcc.Graph(id='risk-chart')
-        html.Div(className="banner row", children=[
-            html.Div(className="container", children=[
-                html.Div(className="content", children=[
-                    html.Iframe(
-                        id='risk-chart',
-                        style={'border-width': '0', 'width': '100%', 'height': '400px'}
-                    ),
-                ])
-            ])
-        ]),
+        # # RESULTS SECTION
+        # html.Div(className="banner row", children=[
+        #     html.Div(className="container", children=[
+        #         html.Div(className="content", children=[
+        #             html.Div(className='input-container', children=[
+        #                 html.Iframe(
+        #                     id='risk-chart',
+        #                     style={'border-width': '0', 'width': '100%', 'height': '100%'}
+        #                 )
+        #             ])
+        #         ])
+        #     ])
+        # ]),
 
         # FOOTER SECTION
         html.Div(className="footer row", children=[
@@ -128,6 +135,6 @@ def update_chart(n_clicks, interest_rate, total_loan_amount, loan_to_value, fico
             float(loan_to_value),
             float(fico_score),
             float(dti_ratio),
-            float(zipcode)
+            zipcode
         ).get_relative_stats(ref_table=df).generate_risk_summary(weight_params=weights)
-    return dlqr.diag_chart.to_html()
+    return dlqr.final_chart.to_html()

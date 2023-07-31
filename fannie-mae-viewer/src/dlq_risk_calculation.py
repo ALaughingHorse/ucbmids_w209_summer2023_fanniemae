@@ -69,15 +69,6 @@ class LoanDlqRisks:
                 self.pct_d_dti * weight_params['Debt-To-Income (DTI)']
             ]
         )/abs(sum(list(weight_params.values())))
-        
-        # self.risk_score = sigmoid(self.risk_score_weighted_sum)
-        # self.risk_score = np.mean([
-        #     self.pct_d_credit_score,
-        #     self.pct_d_dti,
-        #     self.pct_d_int_rate,
-        #     self.pct_d_ltv,
-        #     self.pct_d_upb
-        # ])
 
         # transform the score into categories
         if self.risk_score <= -0.75:
@@ -106,25 +97,75 @@ class LoanDlqRisks:
         
         # The model predicts the probability of delinquent, thus different direction compared to the weight is good
         plot_tb['directions'] = (plot_tb['values'] * np.array(list(weight_params.values())))<0
+        self.plot_tb = plot_tb
         
-        # Plot
-        self.diag_chart = alt.Chart(
-            plot_tb, title=f'Loan Attributes Compared to Local Avearge (Shortzip:{self.zipcode})'
+        # Generate the scale plot
+        source = pd.DataFrame()
+        source['x'] = [self.risk_score]
+        source['y'] = [0]
+        axis_label_expr = """
+            datum.value == -1 ? '<-------------- Very Safe -------------->' : 
+            datum.value == -0.5 ? '<---------------- Safe ---------------->' : 
+            datum.value == 0 ? '<------------ Moderate ------------>':
+            datum.value == 0.5 ? '<--------------- Risky --------------->':
+            datum.value == 1 ? '<------------ Very Risky ------------>'
+            :''
+            """
+        self.risk_score_scale_chart = alt.Chart(source,title='Delinquency Risk').mark_circle(size=120).encode(
+            x=alt.X('x', title='Risk Level', scale=alt.Scale(domain=[-1.25,1.25]), axis=alt.Axis(labelExpr=axis_label_expr, values=[-1.25, -1, -0.75, -0.5, -0.25, 0 ,0.25, 0.5, 0.75, 1, 1.25])),
+            y=alt.Y('y', title='', scale=alt.Scale(domain=[-0.01,0.01]), axis=alt.Axis(labels=False)),
+        ).properties(
+            width=800,
+            height=25
+        )
+
+        # Generate the descriptive plot
+        if self.risk_score<0:
+            temp_plottb = self.plot_tb[self.plot_tb.directions==True]
+            temp_plottb['value_direc'] = temp_plottb['values'].apply(lambda x: 'higher' if x>0 else 'lower') 
+            temp_plottb['des'] = temp_plottb['value_direc'] + ' ' + temp_plottb['labels']
+            description_str = ', '.join(temp_plottb['des'].values)
+            subtitle = f"""
+            This loan is rated as {self.risk_cat} because it has {description_str} comparing to loans from the same area
+            """
+        else:
+            temp_plottb = self.plot_tb[self.plot_tb.directions==False]
+            temp_plottb['value_direc'] = temp_plottb['values'].apply(lambda x: 'higher' if x>0 else 'lower') 
+            temp_plottb['des'] = temp_plottb['value_direc'] + ' ' + temp_plottb['labels']
+            description_str = ', '.join(temp_plottb['des'].values)
+            subtitle = f"""
+            This loan is rated as {self.risk_cat} because it has {description_str} comparing to loans from the same area
+            """
+
+        chart_title = alt.TitleParams(
+            f"Why is this loan catagorized as {self.risk_cat}?",
+            subtitle=[subtitle],
+        )
+
+        descriptive_chart = alt.Chart(
+            self.plot_tb[self.plot_tb.directions==(self.risk_score<0)], title=chart_title
         ).mark_bar(
         ).encode(
-            x=alt.Y(
+            x=alt.X('labels', 
+                    title='Loan Attributes',
+                    axis=alt.Axis(labelAngle=0)
+            ),
+            y=alt.Y(
                 'values:Q', 
                 title='Percentage Delta Vs Area Average',
-                axis=alt.Axis(format='%'),
-                scale=alt.Scale(domain=[-1,1])
-            ),
-            y=alt.X('labels', 
-                    title='Loan Attributes'
+                axis=alt.Axis(format='%')
+                # scale=alt.Scale(domain=[-1,1])
             ),
             color=alt.condition(
                 alt.datum.directions,
                 alt.value("green"),  # The positive color
                 alt.value("red")  # The negative color
             )
+        ).properties(
+            width=800,
+            height=300
         )
+
+        self.descriptive_chart = descriptive_chart
+        self.final_chart = alt.vconcat(self.risk_score_scale_chart, self.descriptive_chart)
         return self

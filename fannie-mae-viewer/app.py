@@ -17,11 +17,7 @@ def flaskapp():
 
 @app.route("/riskanalyzer")
 def riskanalyzer():
-    return render_template("risk-analyzer.html")
-
-@app.route("/getrisk", methods=["GET", "POST"])
-def getrisk():
-    return render_template("risk-analyzer-results.html")
+    return redirect('/dash_risk_calc')
 
 @app.route("/exploration")
 def exploration():

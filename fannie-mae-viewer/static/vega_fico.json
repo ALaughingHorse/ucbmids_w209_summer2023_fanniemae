@@ -1,149 +1,119 @@
 {
-    "$schema": "https://vega.github.io/schema/vega/v5.json",
-    "background": "white",
-    "padding": 5,
-    "width": 300,
-    "height": 300,
-    "style": "cell",
-    "data": [
+  "config": {"view": {"continuousWidth": 300, "continuousHeight": 300}},
+  "data": {"name": "data-8eac6942391b4c0471f5c73a6eb3615b"},
+  "mark": {"type": "bar"},
+  "encoding": {
+    "color": {"field": "Loan Has Been Delinquent", "type": "nominal"},
+    "x": {"field": "FICO", "title": "FICO Decile", "type": "quantitative"},
+    "y": {
+      "field": "Bal Pct",
+      "title": "% of Total Balance",
+      "type": "quantitative"
+    }
+  },
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.8.0.json",
+  "datasets": {
+    "data-8eac6942391b4c0471f5c73a6eb3615b": [
       {
-        "name": "data-f27e30761c16fdc75421d534158cc904",
-        "values": [
-          {"FICO Bin": 0, "EVER_DQ": false, "Bal Pct": 0.000003477839534583702},
-          {"FICO Bin": 0, "EVER_DQ": true, "Bal Pct": 0.000039043670246741556},
-          {"FICO Bin": 1, "EVER_DQ": false, "Bal Pct": 0.00002086703720750221},
-          {"FICO Bin": 1, "EVER_DQ": true, "Bal Pct": 0.00010564757831471246},
-          {"FICO Bin": 2, "EVER_DQ": false, "Bal Pct": 0.00034958849283952214},
-          {"FICO Bin": 2, "EVER_DQ": true, "Bal Pct": 0.0005420508202911069},
-          {"FICO Bin": 3, "EVER_DQ": false, "Bal Pct": 0.0011127117922252044},
-          {"FICO Bin": 3, "EVER_DQ": true, "Bal Pct": 0.0010930259080671834},
-          {"FICO Bin": 4, "EVER_DQ": false, "Bal Pct": 0.004721757744722116},
-          {"FICO Bin": 4, "EVER_DQ": true, "Bal Pct": 0.004066972427819409},
-          {"FICO Bin": 5, "EVER_DQ": false, "Bal Pct": 0.024714413597538898},
-          {"FICO Bin": 5, "EVER_DQ": true, "Bal Pct": 0.013788879129064988},
-          {"FICO Bin": 6, "EVER_DQ": false, "Bal Pct": 0.09025055930877873},
-          {"FICO Bin": 6, "EVER_DQ": true, "Bal Pct": 0.028110622332480673},
-          {"FICO Bin": 7, "EVER_DQ": false, "Bal Pct": 0.17750240069357306},
-          {"FICO Bin": 7, "EVER_DQ": true, "Bal Pct": 0.03343421036572042},
-          {"FICO Bin": 8, "EVER_DQ": false, "Bal Pct": 0.280684518876335},
-          {"FICO Bin": 8, "EVER_DQ": true, "Bal Pct": 0.033206543115432904},
-          {"FICO Bin": 9, "EVER_DQ": false, "Bal Pct": 0.2722956418208498},
-          {"FICO Bin": 9, "EVER_DQ": true, "Bal Pct": 0.02061354863916076}
-        ]
+        "FICO": 0,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.000003477839534583702
       },
       {
-        "name": "data_0",
-        "source": "data-f27e30761c16fdc75421d534158cc904",
-        "transform": [
-          {
-            "type": "stack",
-            "groupby": ["FICO Bin"],
-            "field": "Bal Pct",
-            "sort": {"field": ["EVER_DQ"], "order": ["descending"]},
-            "as": ["Bal Pct_start", "Bal Pct_end"],
-            "offset": "zero"
-          },
-          {
-            "type": "filter",
-            "expr": "isValid(datum[\"FICO Bin\"]) && isFinite(+datum[\"FICO Bin\"]) && isValid(datum[\"Bal Pct\"]) && isFinite(+datum[\"Bal Pct\"])"
-          }
-        ]
+        "FICO": 0,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.000039043670246741556
+      },
+      {
+        "FICO": 1,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.00002086703720750221
+      },
+      {
+        "FICO": 1,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.00010564757831471246
+      },
+      {
+        "FICO": 2,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.00034958849283952214
+      },
+      {
+        "FICO": 2,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.0005420508202911069
+      },
+      {
+        "FICO": 3,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.0011127117922252044
+      },
+      {
+        "FICO": 3,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.0010930259080671834
+      },
+      {
+        "FICO": 4,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.004721757744722116
+      },
+      {
+        "FICO": 4,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.004066972427819409
+      },
+      {
+        "FICO": 5,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.024714413597538898
+      },
+      {
+        "FICO": 5,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.013788879129064988
+      },
+      {
+        "FICO": 6,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.09025055930877873
+      },
+      {
+        "FICO": 6,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.028110622332480673
+      },
+      {
+        "FICO": 7,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.17750240069357306
+      },
+      {
+        "FICO": 7,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.03343421036572042
+      },
+      {
+        "FICO": 8,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.280684518876335
+      },
+      {
+        "FICO": 8,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.033206543115432904
+      },
+      {
+        "FICO": 9,
+        "Loan Has Been Delinquent": false,
+        "Bal Pct": 0.2722956418208498
+      },
+      {
+        "FICO": 9,
+        "Loan Has Been Delinquent": true,
+        "Bal Pct": 0.02061354863916076
       }
-    ],
-    "marks": [
-      {
-        "name": "marks",
-        "type": "rect",
-        "style": ["bar"],
-        "from": {"data": "data_0"},
-        "encode": {
-          "update": {
-            "fill": {"scale": "color", "field": "EVER_DQ"},
-            "ariaRoleDescription": {"value": "bar"},
-            "description": {
-              "signal": "\"FICO Bin: \" + (format(datum[\"FICO Bin\"], \"\")) + \"; Bal Pct: \" + (format(datum[\"Bal Pct\"], \"\")) + \"; EVER_DQ: \" + (isValid(datum[\"EVER_DQ\"]) ? datum[\"EVER_DQ\"] : \"\"+datum[\"EVER_DQ\"])"
-            },
-            "xc": {"scale": "x", "field": "FICO Bin"},
-            "width": {"value": 5},
-            "y": {"scale": "y", "field": "Bal Pct_end"},
-            "y2": {"scale": "y", "field": "Bal Pct_start"}
-          }
-        }
-      }
-    ],
-    "scales": [
-      {
-        "name": "x",
-        "type": "linear",
-        "domain": {"data": "data_0", "field": "FICO Bin"},
-        "range": [0, {"signal": "width"}],
-        "nice": true,
-        "zero": false,
-        "padding": 5
-      },
-      {
-        "name": "y",
-        "type": "linear",
-        "domain": {"data": "data_0", "fields": ["Bal Pct_start", "Bal Pct_end"]},
-        "range": [{"signal": "height"}, 0],
-        "nice": true,
-        "zero": true
-      },
-      {
-        "name": "color",
-        "type": "ordinal",
-        "domain": {"data": "data_0", "field": "EVER_DQ", "sort": true},
-        "range": "category"
-      }
-    ],
-    "axes": [
-      {
-        "scale": "x",
-        "orient": "bottom",
-        "gridScale": "y",
-        "grid": true,
-        "tickCount": {"signal": "ceil(width/40)"},
-        "domain": false,
-        "labels": false,
-        "aria": false,
-        "maxExtent": 0,
-        "minExtent": 0,
-        "ticks": false,
-        "zindex": 0
-      },
-      {
-        "scale": "y",
-        "orient": "left",
-        "gridScale": "x",
-        "grid": true,
-        "tickCount": {"signal": "ceil(height/40)"},
-        "domain": false,
-        "labels": false,
-        "aria": false,
-        "maxExtent": 0,
-        "minExtent": 0,
-        "ticks": false,
-        "zindex": 0
-      },
-      {
-        "scale": "x",
-        "orient": "bottom",
-        "grid": false,
-        "title": "FICO Bin",
-        "labelFlush": true,
-        "labelOverlap": true,
-        "tickCount": {"signal": "ceil(width/40)"},
-        "zindex": 0
-      },
-      {
-        "scale": "y",
-        "orient": "left",
-        "grid": false,
-        "title": "Bal Pct",
-        "labelOverlap": true,
-        "tickCount": {"signal": "ceil(height/40)"},
-        "zindex": 0
-      }
-    ],
-    "legends": [{"fill": "color", "symbolType": "square", "title": "EVER_DQ"}]
+    ]
   }
+}

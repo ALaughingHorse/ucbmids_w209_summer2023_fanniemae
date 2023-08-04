@@ -1,102 +1,42 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "background": "white",
-  "padding": 5,
-  "width": 400,
-  "height": 225,
-  "title": {
-    "text": "Mortgage Loan Delinquency by Number of Borrowers",
-    "frame": "group"
+  "config": {
+    "view": {"continuousWidth": 400, "continuousHeight": 300},
+    "circle": {"size": 100}
   },
-  "style": "cell",
-  "data": [
-    {
-      "name": "source_0",
-      "url": "http://localhost:43335/0aad289c61f0174a1c5bedfed9109bb0.json",
-      "format": {"type": "json"},
-      "transform": [
-        {
-          "type": "filter",
-          "expr": "isValid(datum[\"pct_delinquent\"]) && isFinite(+datum[\"pct_delinquent\"])"
-        }
-      ]
-    }
-  ],
-  "marks": [
-    {
-      "name": "marks",
-      "type": "symbol",
-      "style": ["circle"],
-      "from": {"data": "source_0"},
-      "encode": {
-        "update": {
-          "opacity": {"value": 0.7},
-          "fill": {"value": "#4c78a8"},
-          "tooltip": {
-            "signal": "{\"Delinquent Loans\": format(datum[\"pct_delinquent\"], \".2%\")}"
-          },
-          "ariaRoleDescription": {"value": "circle"},
-          "description": {
-            "signal": "\"Delinquent Loans: \" + (format(datum[\"pct_delinquent\"], \".2%\")) + \"; Number of Borrowers on Loan: \" + (isValid(datum[\"num_borrowers\"]) ? datum[\"num_borrowers\"] : \"\"+datum[\"num_borrowers\"]) + \"; Percentage of Delinquent Loans: \" + (format(datum[\"pct_delinquent\"], \"%\"))"
-          },
-          "x": {"scale": "x", "field": "num_borrowers"},
-          "y": {"scale": "y", "field": "pct_delinquent"},
-          "shape": {"value": "circle"}
-        }
+  "data": {"name": "data-3a94cbf5e187ded05006f876faa8aeca"},
+  "mark": "circle",
+  "encoding": {
+    "tooltip": [
+      {
+        "field": "pct_delinquent",
+        "format": ".2%",
+        "title": "Delinquent Loans",
+        "type": "quantitative"
       }
-    }
-  ],
-  "scales": [
-    {
-      "name": "x",
-      "type": "point",
-      "domain": {"data": "source_0", "field": "num_borrowers", "sort": true},
-      "range": [0, {"signal": "width"}],
-      "padding": 0.5
-    },
-    {
-      "name": "y",
-      "type": "linear",
-      "domain": {"data": "source_0", "field": "pct_delinquent"},
-      "range": [{"signal": "height"}, 0],
-      "nice": true,
-      "zero": true
-    }
-  ],
-  "axes": [
-    {
-      "scale": "y",
-      "orient": "left",
-      "gridScale": "x",
-      "grid": true,
-      "tickCount": {"signal": "ceil(height/40)"},
-      "domain": false,
-      "labels": false,
-      "aria": false,
-      "maxExtent": 0,
-      "minExtent": 0,
-      "ticks": false,
-      "zindex": 0
-    },
-    {
-      "scale": "x",
-      "orient": "bottom",
-      "grid": false,
+    ],
+    "x": {
+      "axis": {"labelAngle": 0},
+      "field": "num_borrowers",
       "title": "Number of Borrowers on Loan",
-      "labelAngle": 0,
-      "labelBaseline": "top",
-      "zindex": 0
+      "type": "ordinal"
     },
-    {
-      "scale": "y",
-      "orient": "left",
-      "grid": false,
+    "y": {
+      "axis": {"format": "%"},
+      "field": "pct_delinquent",
       "title": "Percentage of Delinquent Loans",
-      "format": "%",
-      "labelOverlap": true,
-      "tickCount": {"signal": "ceil(height/40)"},
-      "zindex": 0
+      "type": "quantitative"
     }
-  ],
-  "config": {"style": {"circle": {"size": 100}}}
+  },
+  "height": 225,
+  "title": "Mortgage Loan Delinquency by Number of Borrowers",
+  "width": 400,
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json",
+  "datasets": {
+    "data-3a94cbf5e187ded05006f876faa8aeca": [
+      {"num_borrowers": 3, "pct_delinquent": 0.17955801104972377},
+      {"num_borrowers": 4, "pct_delinquent": 0.14049586776859505},
+      {"num_borrowers": 2, "pct_delinquent": 0.11630086836566861},
+      {"num_borrowers": 1, "pct_delinquent": 0.15487381032687597}
+    ]
+  }
 }

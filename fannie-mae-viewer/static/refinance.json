@@ -40,8 +40,20 @@
       "title": "Interest Rate Improvement of Refinanced Loans"
     }
   ],
-  "data": {
-    "url": "http://localhost:43335/8947345cdb0d3e4295668dcb891cce27.json"
-  },
-  "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json"
+  "data": {"name": "data-97ff91106c90720327e31ec74ba3a3c7"},
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json",
+  "datasets": {
+    "data-97ff91106c90720327e31ec74ba3a3c7": [
+      {"hist": 3, "bin_edges": -2.14025},
+      {"hist": 0, "bin_edges": -1.92075},
+      {"hist": 20, "bin_edges": -1.70125},
+      {"hist": 88, "bin_edges": -1.48175},
+      {"hist": 55, "bin_edges": -1.2622499999999999},
+      {"hist": 224, "bin_edges": -1.0427499999999998},
+      {"hist": 440, "bin_edges": -0.8232499999999998},
+      {"hist": 729, "bin_edges": -0.6037499999999998},
+      {"hist": 693, "bin_edges": -0.38424999999999976},
+      {"hist": 1779, "bin_edges": -0.16474999999999973}
+    ]
+  }
 }
